@@ -1,0 +1,28 @@
+﻿.Login-bg {
+    background-image: url('../assets/Background.jpg');
+    background-position: center center;
+}
+
+.logo {
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    width: 120px;
+    background-color: #F7E6D0;
+}
+
+.logo-container {
+    background-color: #F7E6D0;
+}
+
+.bg-button {
+    background-color: #544ADD;
+    color: white;
+}
+
+.link-color {
+    color: #544ADD;
+}
+
+a:hover {
+    color: #544ADD;
+}
