@@ -1,0 +1,26 @@
+﻿.bg-inv {
+    background-color: #F7E6D0;
+}
+
+.btn-color {
+    background-color: #0B4931;
+    color: #FFFCF8;
+    height: 3.40rem;
+}
+
+    .btn-color:hover {
+        background-color: #198058;
+        color: #FFFCF8;
+    }
+
+.table-color {
+    border-color: #0B4931;
+    background-color: #FFFCF8;
+    color: #242424;
+}
+
+.th-color {
+    background-color: #0B4931;
+    border-color: #0B4931;
+    color: white;
+}
