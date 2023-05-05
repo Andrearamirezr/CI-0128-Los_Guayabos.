@@ -1,11 +1,14 @@
 import './Login.css'
 import logotipo from '../assets/Logotipo.jpg'
 
+{ /* Pagina de ingreso a la aplicacion */ }
 function Login() {
     return (
         <div className="Login-bg">
             <div className="container d-flex justify-content-center align-items-center min-vh-100">
                 <div className="row w-75 shadow rounded">
+
+                    {/* Carta Izquierda: se muestra logo e informacion de la empresa. */}
                     <div className="col px-1 logo-container rounded-start d-none d-md-block">
                         <div className="container logo">
                             <img src={ logotipo } className="img-fluid rounded-circle" alt=""/>
@@ -16,6 +19,8 @@ function Login() {
                             recipientes desechables por retornables.
                         </p>
                     </div>
+
+                    {/* Carta derecha: se muestran el formulario para ingresar credenciales de usuario. */}
                     <div className="col px-4 py-5 bg-white rounded-end">
                         <h2 className="py-5 fw-bold text-center">&iexcl;Bienvenido de vuelta!</h2>
                         <form action="#">
