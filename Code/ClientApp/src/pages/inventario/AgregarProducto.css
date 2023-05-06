@@ -1,0 +1,19 @@
+﻿.bg-ap {
+    background-color: #F7E6D0;
+}
+
+.bg-surface {
+    background-color: #FFFCF8;
+}
+
+.bg-lb {
+    background-color: #0B4931;
+    border-color: #0B4931;
+    border-radius: 0px;
+    color: #FFFCF8;
+}
+
+.brc {
+    border-color: #0B4931;
+    border-radius: 0px;
+}
