@@ -1,13 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
-import Login from './pages/Login'
-import Inventario from './pages/inventario/Inventario'
+import AppRouter from './router/AppRouter'
 
 function App() {
-
     return (
         <div>
-            <Login />
+            <AppRouter/>
         </div>
     );
 }

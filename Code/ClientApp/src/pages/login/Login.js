@@ -1,8 +1,8 @@
 import './Login.css'
-import logotipo from '../assets/Logotipo.jpg'
+import logotipo from '../../assets/Logotipo.jpg'
 
 { /* Pagina de ingreso a la aplicacion */ }
-function Login() {
+const Login = () => {
     return (
         <div className="Login-bg">
             <div className="container d-flex justify-content-center align-items-center min-vh-100">
@@ -46,7 +46,7 @@ function Login() {
                                 <button type="submit" className="btn bg-button">Iniciar Sesion</button>
                             </div>
                             <div class="mx-2 my-3">
-                                <span><a className="link-color" href="#">Recuperar contrase&ntilde;a</a></span>
+                                <span><a className="link-color" href="inventario">Recuperar contrase&ntilde;a</a></span>
                             </div>
                         </form>
                     </div>

@@ -2,7 +2,7 @@ import './Inventario.css'
 import TablaInventario from './components/TablaInventario'
 
 {/* Pagina principal del Inventario */}
-function Inventario() {
+const Inventario = () => {
     return (
         <div className="container-fluid bg-inv min-vh-100">
             {/* Encabezado */}

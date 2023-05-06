@@ -1,5 +1,5 @@
 ﻿.Login-bg {
-    background-image: url('../assets/Background.jpg');
+    background-image: url('../../assets/Background.jpg');
     background-position: center center;
 }
 
@@ -17,6 +17,11 @@
 .bg-button {
     background-color: #544ADD;
     color: white;
+}
+
+.bg-button:hover {
+    background-color: gray;
+    color: #242424;
 }
 
 .link-color {
