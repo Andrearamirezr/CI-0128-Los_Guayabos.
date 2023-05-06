@@ -1,8 +1,22 @@
 import './Login.css'
 import logotipo from '../../assets/Logotipo.jpg'
+import { useNavigate } from 'react-router-dom'
 
 { /* Pagina de ingreso a la aplicacion */ }
 const Login = () => {
+    const navigate = useNavigate();
+
+    {/* Metodo para autenticar e ingresar */ }
+    const onLogin = e => {
+        e.preventDefault();
+        navigate('/dashboard', {
+            replace: true,
+            state: {
+                logged: true,
+            },
+        });
+    };
+
     return (
         <div className="Login-bg">
             <div className="container d-flex justify-content-center align-items-center min-vh-100">
@@ -23,7 +37,7 @@ const Login = () => {
                     {/* Carta derecha: se muestran el formulario para ingresar credenciales de usuario. */}
                     <div className="col px-4 py-5 bg-white rounded-end">
                         <h2 className="py-5 fw-bold text-center">&iexcl;Bienvenido de vuelta!</h2>
-                        <form action="#">
+                        <form onSubmit={ onLogin }>
                             <div className="mx-2 mb-4">
                                 <label for="userEntry" className="form-label">Usuario</label>
                                 <input

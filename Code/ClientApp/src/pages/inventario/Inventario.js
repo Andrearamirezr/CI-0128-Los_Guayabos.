@@ -1,8 +1,15 @@
 import './Inventario.css'
 import TablaInventario from './components/TablaInventario'
+import { useNavigate } from 'react-router-dom'
 
 {/* Pagina principal del Inventario */}
 const Inventario = () => {
+    const navigate = useNavigate();
+
+    const agregarProducto = e => {
+        e.preventDefault();
+        navigate('agregar');
+    };
     return (
         <div className="container-fluid bg-inv min-vh-100">
             {/* Encabezado */}
@@ -12,7 +19,7 @@ const Inventario = () => {
                 <div className="col-4">
                     <div class="input-group">
                         <input type="search" id="searchBar" class="form-control" placeholder="Buscar producto"/>
-                        <button type="submit" className="btn btn-color">Icon</button>
+                        <button className="btn btn-color">Icon</button>
                     </div>
                 </div>
 
@@ -31,7 +38,7 @@ const Inventario = () => {
                 {/* Boton para agregar nuevo producto */}
                 <div className="col-2 col-lg-1 mx-5">
                     <div className="button-group">
-                        <button type="submit" className="btn btn-color">Agregar producto</button>
+                        <button onClick={agregarProducto} className="btn btn-color">Agregar producto</button>
                     </div>
                 </div>
             </div>

@@ -8,13 +8,16 @@ const Layout = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="dashboard">Dashboard</Link>
+                    </li>
+                    <li>
+                        <Link to="inventario">Inventario</Link>
                     </li>
                 </ul>
             </nav>
             <hr />
             { /* Contenedor de las paginas */}
-            <Outlet />
+            <Outlet/>
         </div>
     );
 }
