@@ -11,7 +11,7 @@ const Inventario = () => {
         navigate('agregar');
     };
     return (
-        <div className="container-fluid bg-inv min-vh-100">
+        <div className="container-fluid bg-inv">
             {/* Encabezado */}
             <div className="row my-4 px-4">
 

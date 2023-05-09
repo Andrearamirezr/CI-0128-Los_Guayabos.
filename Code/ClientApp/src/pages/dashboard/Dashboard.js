@@ -1,7 +1,12 @@
+import './Dashboard.css'
+
 {/* Pagina principal del Dashboard */ }
 const Dashboard = () => {
     return (
-        <h1>Dashboard</h1>
+        <div className="container-fluid bg-dash">
+            <h1>Dashboard</h1>
+        </div>
+        
     );
 }
 

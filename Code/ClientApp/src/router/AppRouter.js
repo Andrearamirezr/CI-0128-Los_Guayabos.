@@ -4,6 +4,7 @@ import Layout from '../pages/Layout';
 import Dashboard from '../pages/dashboard/Dashboard'
 import Inventario from '../pages/inventario/Inventario'
 import AgregarProducto from '../pages/inventario/AgregarProducto';
+import Clientes from '../pages/clientes/Clientes';
 
 { /* Componente para controlar la navegacion con rutas */ }
 const AppRouter = () => {
@@ -22,7 +23,7 @@ const AppRouter = () => {
                     { /*<Route path="ordenes/agregar" element={<AgregarOrden />} />*/}
                     { /*<Route path="ordenes/editar:id" element={<EditarOrden />} />*/}
                     { /*<Route path="ordenes/orden:id" element={<VerOrden />} />*/}
-                    { /*<Route path="clientes" element={<Clientes />} />*/}
+                    <Route path="clientes" element={<Clientes />} />
                     { /*<Route path="clientes/agregar" element={<AgregarCliente />} />*/}
                     { /*<Route path="clientes/editar:id" element={<EditarCliente />} />*/}
                     { /*<Route path="clientes/orden:id" element={<VerCliente />} />*/}
