@@ -76,6 +76,10 @@ GO
 CREATE TABLE [dbo].[Stock](
 	[Cantidad_total] [int] NOT NULL,
 	[Cantidad_disponible] [int] NOT NULL,
+	[Reservado_por_unidad] [int] NOT NULL,
+	[Devuelto_por_unidad] [int] NOT NULL,
+	[Usado_por_unidad] [int] NOT NULL,
+	[Sin_usar_por_unidad] [int] NOT NULL,
 	[Id_producto] [int] NOT NULL,
 ) ON [PRIMARY]
 GO
