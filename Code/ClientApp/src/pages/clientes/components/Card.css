@@ -1,0 +1,29 @@
+﻿.card {
+    background-color: #FFFCF8;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 8px;
+    padding: 8px;
+    text-align: center;
+    display: inline-block;
+}
+
+.card__image {
+    height: 100%;
+}
+
+.card__title {
+    font-size: 1.5rem;
+    margin-top: 16px;
+}
+
+.card__description {
+    font-size: 1.5rem;
+    margin-top: 8px;
+    background-color: #E9EEB0;
+}
+
+body {
+    background-color: #F4E6D0;
+}
