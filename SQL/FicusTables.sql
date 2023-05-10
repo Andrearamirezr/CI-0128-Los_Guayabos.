@@ -108,3 +108,72 @@ GO
 
 ALTER TABLE [dbo].[usuario_producto] CHECK CONSTRAINT [FK_usuario_producto_Producto]
 GO
+
+
+-------------------------CLIENTE-----------------------------------------
+--TABLA CLIENTE
+CREATE TABLE [dbo].[Cliente](
+	[ID cliente] [int] NOT NULL,
+	[Empresa] [varchar](50) NOT NULL,
+	[Responsable] [varchar](50) NOT NULL,
+	[Nombre Contacto] [varchar](50) NOT NULL,
+	[Telefono] [int] NOT NULL,
+	[Correo] [varchar](50) NULL,
+	[Pagina Web] [varchar](50) NULL,
+	[Fecha creacion] [date] NOT NULL,
+ CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
+(
+	[ID cliente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+--TABLA MEDIO DE COMUNICACION
+CREATE TABLE [dbo].[Medio de comunicación](
+	[ID Medio] [int] NOT NULL,
+	[Medio] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Medio de comunicación] PRIMARY KEY CLUSTERED 
+(
+	[ID Medio] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+--TABLA SEGMENTO
+CREATE TABLE [dbo].[Segmento](
+	[ID Segmento] [int] NOT NULL,
+	[Tipo de comercio] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Segmento] PRIMARY KEY CLUSTERED 
+(
+	[ID Segmento] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+--TABLA RELACION CLIENTE-MEDIO DE COMUNICACION
+CREATE TABLE [dbo].[Cliente - Medio de comunicación](
+	[ID Cliente] [int] NOT NULL,
+	[ID Medio] [int] NOT NULL
+	CONSTRAINT [FK ID Cliente] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
+	CONSTRAINT [FK ID Medio] FOREIGN KEY ([ID Medio]) REFERENCES [Medio de comunicación] ([ID Medio]),
+) ON [PRIMARY]
+GO
+
+--TABLA CLIENTE-SEGMENTO
+CREATE TABLE [dbo].[Cliente - Segmento](
+	[ID Cliente] [int] NOT NULL,
+	[ID Segmento] [int] NOT NULL
+	CONSTRAINT [FK ID ClienteSeg] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
+	CONSTRAINT [FK ID Segmento] FOREIGN KEY ([ID Segmento]) REFERENCES [Segmento] ([ID Segmento])
+) ON [PRIMARY]
+GO
+
+--TABLA PRIORIDAD CLIENTE
+CREATE TABLE [dbo].[Prioridad Cliente](
+	[ID Cliente] [int] NOT NULL,
+	[Baja] [int] NULL,
+	[Media] [int] NULL,
+	[Alta] [int] NULL
+	CONSTRAINT [FK ID ClientePrio] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
+) ON [PRIMARY]
+GO
