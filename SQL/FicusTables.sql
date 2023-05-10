@@ -181,3 +181,57 @@ CREATE TABLE [dbo].[Prioridad Cliente](
 	CONSTRAINT [FK ID ClientePrio] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
 ) ON [PRIMARY]
 GO
+
+-------------------------------USUARIO--------------------------
+-- TABLA USUARIO
+CREATE TABLE usuario (
+  id_usuario INTEGER PRIMARY KEY,
+  contrasena TEXT NOT NULL,
+  correo VARCHAR(50) NULL
+);
+
+-- TABLA NOMBRE USUARIO
+CREATE TABLE nombre_usuario (
+  id_usuario INTEGER,
+  nombre TEXT NOT NULL,
+  apellido1 TEXT NOT NULL,
+  apellido2 TEXT NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
+
+-- TABLA ROL DE USUARIO
+CREATE TABLE usuario_rol(
+  id_usuario INTEGER,
+  id_rol INTEGER,
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+  FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
+);
+
+
+-- TABLA ROL
+CREATE TABLE rol (
+  id_rol INTEGER PRIMARY KEY,
+  puesto VARCHAR(30) NULL
+);
+
+-- TABLA PERMISOS
+CREATE TABLE permisos (
+  id_rol INTEGER,
+  agregar_producto BIT,
+  eliminar_producto BIT,
+  editar_usuario BIT,
+  agregar_orden BIT,
+  editar_orden BIT,
+  eliminar_orden BIT,
+  agregar_cliente BIT,
+  editar_cliente BIT,
+  FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
+);
+
+
+CREATE TABLE usuario_cliente(
+  id_usuario INTEGER,
+  id_cliente INTEGER,
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+  FOREIGN KEY (id_usuario) REFERENCES Cliente([ID cliente])
+);
