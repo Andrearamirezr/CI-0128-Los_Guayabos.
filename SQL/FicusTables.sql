@@ -91,29 +91,6 @@ GO
 ALTER TABLE [dbo].[Stock] CHECK CONSTRAINT [FK_Stock_Producto]
 GO
 
---TABLA RELACION USUARIO-PRODUCTO
-
-CREATE TABLE [dbo].[usuario_producto](
-	[Id_producto] [int] NOT NULL,
-	[Id_usuario] [int] NOT NULL
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[usuario_producto]  WITH CHECK ADD  CONSTRAINT [FK_usuario_producto_Usuario] FOREIGN KEY([Id_usuario])
-REFERENCES [dbo].[Usuario] ([ID_usuario])
-GO
-
-ALTER TABLE [dbo].[usuario_producto] CHECK CONSTRAINT [FK_usuario_producto_Usuario]
-GO
-
-ALTER TABLE [dbo].[usuario_producto]  WITH CHECK ADD  CONSTRAINT [FK_usuario_producto_Producto] FOREIGN KEY([Id_producto])
-REFERENCES [dbo].[Producto] ([SKU])
-GO
-
-ALTER TABLE [dbo].[usuario_producto] CHECK CONSTRAINT [FK_usuario_producto_Producto]
-GO
-
-
 -------------------------CLIENTE-----------------------------------------
 --TABLA CLIENTE
 CREATE TABLE [dbo].[Cliente](
@@ -199,19 +176,18 @@ CREATE TABLE nombre_usuario (
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
 
+-- TABLA ROL
+CREATE TABLE rol (
+  id_rol INTEGER PRIMARY KEY,
+  puesto VARCHAR(30) NULL
+);
+
 -- TABLA ROL DE USUARIO
 CREATE TABLE usuario_rol(
   id_usuario INTEGER,
   id_rol INTEGER,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
   FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
-);
-
-
--- TABLA ROL
-CREATE TABLE rol (
-  id_rol INTEGER PRIMARY KEY,
-  puesto VARCHAR(30) NULL
 );
 
 -- TABLA PERMISOS
@@ -235,3 +211,25 @@ CREATE TABLE usuario_cliente(
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
   FOREIGN KEY (id_usuario) REFERENCES Cliente([ID cliente])
 );
+
+--TABLA RELACION USUARIO-PRODUCTO
+
+CREATE TABLE [dbo].[usuario_producto](
+	[Id_producto] [int] NOT NULL,
+	[Id_usuario] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[usuario_producto]  WITH CHECK ADD  CONSTRAINT [FK_usuario_producto_Usuario] FOREIGN KEY([Id_usuario])
+REFERENCES [dbo].[Usuario] ([ID_usuario])
+GO
+
+ALTER TABLE [dbo].[usuario_producto] CHECK CONSTRAINT [FK_usuario_producto_Usuario]
+GO
+
+ALTER TABLE [dbo].[usuario_producto]  WITH CHECK ADD  CONSTRAINT [FK_usuario_producto_Producto] FOREIGN KEY([Id_producto])
+REFERENCES [dbo].[Producto] ([SKU])
+GO
+
+ALTER TABLE [dbo].[usuario_producto] CHECK CONSTRAINT [FK_usuario_producto_Producto]
+GO

@@ -1,13 +1,15 @@
 USE [master]
 GO
 
-CREATE DATABASE [Ficus]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'Ficus', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\Ficus.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'Ficus_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\Ficus_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
+DECLARE @device_directory NVARCHAR(520)
+SELECT @device_directory = SUBSTRING(filename, 1, CHARINDEX(N'master.mdf', LOWER(filename)) - 1)
+FROM master.dbo.sysaltfiles WHERE dbid = 1 AND fileid = 1
+
+EXECUTE (N'CREATE DATABASE Ficus
+  CONTAINMENT = NONE
+  ON PRIMARY (NAME = N''Ficus'', FILENAME = N''' + @device_directory + N'Ficus.mdf'' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB)
+  LOG ON (NAME = N''Ficus_log'',  FILENAME = N''' + @device_directory + N'Ficus.ldf'', SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+  WITH CATALOG_COLLATION = DATABASE_DEFAULT')
 GO
 
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
