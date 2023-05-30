@@ -91,6 +91,70 @@ GO
 ALTER TABLE [dbo].[Stock] CHECK CONSTRAINT [FK_Stock_Producto]
 GO
 
+-------------------------Orden-----------------------------------------
+--TABLA ORDEN
+
+CREATE TABLE [dbo].[Orden](
+	[Consecutivo] [int] NOT NULL,
+	[Monto_total] [float] NULL,
+	[Feria_verde] [bit] NULL,
+	[Detalle_orden] [text] NULL,
+	[Fecha_alquiler] [datetime] NOT NULL,
+	[Fecha_terminación] [datetime] NOT NULL,
+ CONSTRAINT [PK_Orden] PRIMARY KEY CLUSTERED 
+(
+	[Consecutivo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+--TABLA PARA Estado
+CREATE TABLE [dbo].[Estado](
+	[ID_estado] [int] NOT NULL,
+	[Estado] [text] NOT NULL,
+	[Id_orden] [int] NOT NULL,
+ CONSTRAINT [PK_Estado] PRIMARY KEY CLUSTERED 
+(
+	[ID_estado] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Estado]  WITH CHECK ADD  CONSTRAINT [FK_Estado_Orden] FOREIGN KEY([Id_orden])
+REFERENCES [dbo].[Orden] ([Consecutivo])
+GO
+
+ALTER TABLE [dbo].[Estado] CHECK CONSTRAINT [FK_Estado_Orden]
+GO
+
+
+--TABLA RELACION ORDEN-PRODUCTO
+CREATE TABLE [dbo].[orden_producto](
+	[Id_producto] [int] NOT NULL,
+	[Id_orden] [int] NOT NULL,
+	[Precio_descuento] [int] NOT NULL,
+	[Reservado][int] NOT NULL,
+	[Sin_usar][int] NOT NULL,
+	[Usado][int] NOT NULL,
+	[Devuelto][int] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[orden_producto]  WITH CHECK ADD  CONSTRAINT [FK_orden_producto_Orden] FOREIGN KEY([Id_orden])
+REFERENCES [dbo].[Orden] ([Consecutivo])
+GO
+
+ALTER TABLE [dbo].[orden_producto] CHECK CONSTRAINT [FK_orden_producto_Orden]
+GO
+
+ALTER TABLE [dbo].[orden_producto]  WITH CHECK ADD  CONSTRAINT [FK_orden_producto_Producto] FOREIGN KEY([Id_producto])
+REFERENCES [dbo].[Producto] ([SKU])
+GO
+
+ALTER TABLE [dbo].[orden_producto] CHECK CONSTRAINT [FK_orden_producto_Producto]
+GO
+
+
 -------------------------CLIENTE-----------------------------------------
 --TABLA CLIENTE
 CREATE TABLE [dbo].[Cliente](
@@ -232,4 +296,25 @@ REFERENCES [dbo].[Producto] ([SKU])
 GO
 
 ALTER TABLE [dbo].[usuario_producto] CHECK CONSTRAINT [FK_usuario_producto_Producto]
+GO
+
+--TABLA RELACION USUARIO-ORDEN
+CREATE TABLE [dbo].[usuario_orden](
+	[Id_orden] [int] NOT NULL,
+	[Id_usuario] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[usuario_orden]  WITH CHECK ADD  CONSTRAINT [FK_usuario_orden_Usuario] FOREIGN KEY([Id_usuario])
+REFERENCES [dbo].[Usuario] ([ID_usuario])
+GO
+
+ALTER TABLE [dbo].[usuario_orden] CHECK CONSTRAINT [FK_usuario_orden_Usuario]
+GO
+
+ALTER TABLE [dbo].[usuario_orden]  WITH CHECK ADD  CONSTRAINT [FK_usuario_orden_Orden] FOREIGN KEY([Id_orden])
+REFERENCES [dbo].[Orden] ([Consecutivo])
+GO
+
+ALTER TABLE [dbo].[usuario_orden] CHECK CONSTRAINT [FK_usuario_orden_Orden]
 GO
