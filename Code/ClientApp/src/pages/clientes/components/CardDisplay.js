@@ -14,90 +14,91 @@ const CardDisplay = () => {
     useEffect(() => {
         consultarClientes();
     }, []);
+
     const cardsData = [
         {
             id: 1,
             image: myImage,
-            title: 'Card Title 1',
-            description: 'Card description 1'
+            title: 'Empresa 1',
+            description: 'Feria Verde'
         },
         {
             id: 2,
             image: myImage,
-            title: 'Card Title 2',
-            description: 'Card description 2'
+            title: 'Empresa 2',
+            description: 'Restaurante'
         },
         {
             id: 3,
             image: myImage,
-            title: 'Card Title 3',
-            description: 'Card description 3'
+            title: 'Empresa 3',
+            description: 'Panaderia'
         },
         {
             id: 4,
             image: myImage,
-            title: 'Card Title 1',
-            description: 'Card description 1'
+            title: 'Empresa 4',
+            description: 'Restaurante'
         },
         {
             id: 5,
             image: myImage,
-            title: 'Card Title 2',
-            description: 'Card description 2'
+            title: 'Empresa 5',
+            description: 'Soda'
         },
         {
             id: 6,
             image: myImage,
-            title: 'Card Title 3',
-            description: 'Card description 3'
+            title: 'Empresa 6',
+            description: 'Panaderia'
         },
         {
             id: 7,
             image: myImage,
-            title: 'Card Title 1',
-            description: 'Card description 1'
+            title: 'Empresa 7',
+            description: 'Soda'
         },
         {
             id: 8,
             image: myImage,
-            title: 'Card Title 2',
-            description: 'Card description 2'
+            title: 'Empresa 8',
+            description: 'Panaderia'
         },
         {
             id: 9,
             image: myImage,
-            title: 'Card Title 3',
-            description: 'Card description 3'
+            title: 'Empresa 9',
+            description: 'Feria Verde'
         },
         {
             id: 10,
             image: myImage,
-            title: 'Card Title 2',
-            description: 'Card description 2'
+            title: 'Empresa 10',
+            description: 'Feria Verde'
         },
         {
             id: 11,
             image: myImage,
-            title: 'Card Title 3',
-            description: 'Card description 3'
+            title: 'Empresa 11',
+            description: 'Feria Verde'
         },
         {
             id: 12,
             image: myImage,
-            title: 'Card Title 1',
-            description: 'Card description 1'
+            title: 'Empresa 12',
+            description: 'Panaderia'
         },
         {
             id: 13,
             image: myImage,
-            title: 'Card Title 2',
-            description: 'Card description 2'
+            title: 'Empresa 13',
+            description: 'Feria Verde'
         },
         {
             id: 14,
             image: myImage,
-            title: 'Card Title 3',
-            description: 'Card description 3'
+            title: 'Empresa 14',
+            description: 'Panaderia'
         }
     ];
 

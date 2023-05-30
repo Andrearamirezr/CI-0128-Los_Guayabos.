@@ -61,22 +61,22 @@ function DetallesProducto(props) {
                     </button>
                 </div>*/}
             </div>
-            <FilaDetalles text1="Fecha de creacion:" text2="data.fecha_creacion" text3="Segmento:" text4="data.segmento" />
-            <FilaDetalles text1="Responsable:" text2="data.responsable" text3="Prioridad:" text4="data.prioridad" />
-            <FilaDetalles text1="Estado:" text2="data.estado" text3="Medio de comunicacion:" text4="data.medio_comunicacion" />
-            <FilaDetalles text1="Contacto:" text2="data.contacto" text3="Telefono:" text4="data.telefono" />
+            <FilaDetalles text1="Fecha de creacion:" text2="data.Fecha_Creacion" text3="Segmento:" text4="data.Segmento" />
+            <FilaDetalles text1="Responsable:" text2="data.Responsable" text3="Prioridad:" text4="data.Prioridad" />
+            <FilaDetalles text1="Estado:" text2="data.Estado" text3="Medio de comunicacion:" text4="data.Medio_Comunicacion" />
+            <FilaDetalles text1="Contacto:" text2="data.Contacto" text3="Telefono:" text4="data.Telefono" />
             <div className="row mb-4">
                 <div className="col-2 mx-0 ps-3 pe-0">
                     <span className="input-group-text bg-spanv ">Correo:</span>
                 </div>
                 <div className="col mx-0 px-0">
-                    <span className="input-group-text bg-textv border-text-end">data.correo</span>
+                    <span className="input-group-text bg-textv border-text-end">data.Correo</span>
                 </div>
                 <div className="col-2 mx-0 px-0">
                     <span className="input-group-text bg-spanv ">Pagina Web:</span>
                 </div>
                 <div className="col mx-0  ps-0 pe-3">
-                    <span className="input-group-text bg-textv border-text-end">data.pagina_web</span>
+                    <span className="input-group-text bg-textv border-text-end">data.Pagina_Web</span>
                 </div>
             </div>
         </div>

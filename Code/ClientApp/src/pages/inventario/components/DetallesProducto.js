@@ -58,23 +58,23 @@ function DetallesProducto(props) {
                     </button>
                 </div>*/}
             </div>
-            <FilaDetalles text1="Nombre:" text2="data.nombre" text3="Familia:" text4="data.familia" />
-            <FilaDetalles text1="Categoria:" text2="data.categoria" text3="Color:" text4="data.color" />
-            <FilaDetalles text1="Descripcion:" text2="data.descripcion" text3="Dimensiones:" text4="data.dimensiones" />
-            <FilaDetalles text1="Peso:" text2="data.peso" text3="Peso Referencia:" text4="data.pesoReferencia" />
-            <FilaDetalles text1="Precio alquiler:" text2="data.precioAlquiler" text3="Precio retail:" text4="data.precioRetail" />
+            <FilaDetalles text1="Nombre:" text2="data.Nombre" text3="Familia:" text4="data.Familia" />
+            <FilaDetalles text1="Categoria:" text2="data.Categoria" text3="Color:" text4="data.Color" />
+            <FilaDetalles text1="Descripcion:" text2="data.Descripcion" text3="Dimensiones:" text4="data.Dimensiones" />
+            <FilaDetalles text1="Peso:" text2="data.Peso" text3="Peso Referencia:" text4="data.Peso_Referencia" />
+            <FilaDetalles text1="Precio alquiler:" text2="data.Precio_Alquiler" text3="Precio retail:" text4="data.Precio_Retail" />
             <div className="row mb-4">
                 <div className="col-2 mx-0 ps-3 pe-0">
                     <span className="input-group-text bg-spanv ">Cantidad total:</span>
                 </div>
                 <div className="col mx-0 px-0">
-                    <span className="input-group-text bg-textv border-text-end">data.cantidadTotal</span>
+                    <span className="input-group-text bg-textv border-text-end">data.Cantidad_Total</span>
                 </div>
                 <div className="col-2 mx-0 px-0">
                     <span className="input-group-text bg-spanv">Cantidad disponible:</span>
                 </div>
                 <div className="col mx-0 ps-0 pe-3">
-                    <span className="input-group-text bg-textv border-text-end">data.cantidadDisponible</span>
+                    <span className="input-group-text bg-textv border-text-end">data.Cantidad_Disponible</span>
                 </div>
             </div>
         </div>
