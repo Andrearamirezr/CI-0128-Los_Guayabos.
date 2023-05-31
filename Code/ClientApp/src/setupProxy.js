@@ -5,13 +5,14 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
   env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:22154';
 
 const context = [
-  "/weatherforecast",
-  "/api/client",
-  "/api/product"
+  "/api/cliente",
+  "/api/detalle",
+  "/api/producto",
+  "/api/orden"
 ];
 
 const onError = (err, req, resp, target) => {
-    console.error(`${err.message}`);
+  console.error(`${err.message}`);
 }
 
 module.exports = function (app) {

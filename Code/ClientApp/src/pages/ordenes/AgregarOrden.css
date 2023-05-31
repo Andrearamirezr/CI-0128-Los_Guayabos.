@@ -1,0 +1,77 @@
+﻿.bg-ap {
+    background-color: #F7E6D0;
+}
+
+.bg-surface {
+    background-color: #FFFCF8;
+    height: fit-content;
+}
+
+.bg-span {
+    background-color: #0B4931;
+    border-color: #0B4931;
+    border-radius: 0px;
+    color: #FFFCF8;
+    justify-content: center;
+    width: 11rem;
+}
+
+.input-form {
+    border-color: #0B4931;
+    border-radius: 0px;
+    border-width: 1px;
+    border-bottom: none;
+}
+
+.input-form-end {
+    border-color: #0B4931;
+    border-radius: 0px;
+    border-width: 1px;
+}
+
+.bt-cancelar {
+    background-color: #FFFCF8;
+    border-color: #242424;
+    border-radius: 2px;
+    border-width: 0.5px;
+    height: fit-content;
+    font-size: 1rem;
+}
+
+.i-cancelar {
+    font-size: 1.5rem;
+}
+
+.bt-confirmar {
+    background-color: #0B4931;
+    border-color: #0B4931;
+    border-radius: 20px;
+    color: #FFFCF8;
+    height: 3.5rem;
+    justify-content: center;
+    width: 10rem;
+}
+    .bt-confirmar:hover {
+        background-color: #198058;
+        color: #FFFCF8;
+    }
+
+.bt-volver {
+    background-color: #FFFCF8;
+    border: none;
+    height: 100%;
+}
+
+.i-volver {
+    background-color: none;
+    color: none;
+    font-size: 3rem;
+}
+
+.img-add {
+    height: 120px;
+}
+
+.img-col {
+    align-content: flex-end;
+}

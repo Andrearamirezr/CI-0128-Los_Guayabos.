@@ -5,11 +5,17 @@ namespace Ficus_App.Models;
 
 public partial class Producto
 {
-    public int Sku { get; set; }
+    public int Id { get; set; }
+
+    public string Sku { get; set; } = null!;
 
     public string? Nombre { get; set; }
 
     public string? Familia { get; set; }
+
+    public string Categoria { get; set; } = null!;
+
+    public string Color { get; set; } = null!;
 
     public string? Descripción { get; set; }
 
@@ -19,13 +25,13 @@ public partial class Producto
 
     public double PesoReferencia { get; set; }
 
-    public double PrecioAlquilerComercios { get; set; }
+    public double PrecioAlquiler { get; set; }
 
-    public double PrecioAlquilerRetail { get; set; }
+    public double PrecioRetail { get; set; }
+
+    public int CantidadTotal { get; set; }
+
+    public int? CantidadDisponible { get; set; }
 
     public int Lote { get; set; }
-
-    public virtual ICollection<Categoria> Categoria { get; set; } = new List<Categoria>();
-
-    public virtual ICollection<Color> Colors { get; set; } = new List<Color>();
 }

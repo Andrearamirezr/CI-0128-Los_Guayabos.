@@ -8,16 +8,16 @@ namespace Ficus_App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class OrdenController : ControllerBase
     {
-        private readonly IClienteService _service;
+        private readonly IOrdenService _service;
 
-        public ClienteController(IClienteService service)
+        public OrdenController(IOrdenService service)
         {
             _service = service;
         }
 
-        // Obtener todos los clientes
+        // Obtener todos los roles
         [HttpGet]
         [Route("Obtener")]
         public async Task<IActionResult> Obtener()
@@ -26,42 +26,41 @@ namespace Ficus_App.Controllers
             return StatusCode(StatusCodes.Status200OK, data);
         }
 
-        // Ver un cliente
+        // Ver una orden
         [HttpGet]
-        [Route("Ver/{nombre:int}")]
-        public async Task<IActionResult> Ver(int nombre)
+        [Route("Ver/{consecutivo:int}")]
+        public async Task<IActionResult> Ver(int consecutivo)
         {
-            var client = await _service.GetByIdAsync(nombre);
+            var client = await _service.GetByIdAsync(consecutivo);
             return StatusCode(StatusCodes.Status200OK, client);
         }
 
-        // Agregar un cliente
+        // Agregar una orden
         [HttpPost]
         [Route("Agregar")]
-        public async Task<IActionResult> Agregar([FromBody] Cliente request)
+        public async Task<IActionResult> Agregar([FromBody] Orden request)
         {
             await _service.AddAsync(request);
             return StatusCode(StatusCodes.Status200OK, "Ok");
         }
 
-        // Editar un cliente
+        // Editar una orden
         [HttpPut]
-        [Route("Editar/{nombre:int}")]
-        public async Task<IActionResult> Editar([FromBody] Cliente request, int nombre)
+        [Route("Editar/{consecutivo:int}")]
+        public async Task<IActionResult> Editar([FromBody] Orden request, int consecutivo)
         {
-            await _service.UpdateAsync(nombre, request);
+            await _service.UpdateAsync(consecutivo, request);
             return StatusCode(StatusCodes.Status200OK, "Ok");
         }
 
-        // Eliminar un cliente
+        // Eliminar una orden
         [HttpDelete]
-        [Route("Eliminar/{nombre:int}")]
-        public async Task<IActionResult> Eliminar(int nombre)
+        [Route("Eliminar/{consecutivo:int}")]
+        public async Task<IActionResult> Eliminar(int consecutivo)
         {
-            await _service.DeleteAsync(nombre);
+            await _service.DeleteAsync(consecutivo);
             return StatusCode(StatusCodes.Status200OK, "Ok");
         }
 
     }
 }
-

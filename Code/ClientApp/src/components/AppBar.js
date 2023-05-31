@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import logotipo from '../assets/Logotipo.png'
 import { FaUserAlt, FaClipboardList } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
+import { RiBillFill } from "react-icons/ri"
 
 
 const AppBar = () => {
@@ -54,8 +55,11 @@ const AppBar = () => {
                             <li className="my-3">
                                 <Link className="sb-link" to="inventario"> <FaClipboardList /> Inventario</Link>
                             </li>
-                            <li>
+                            <li className="my-3">
                                 <Link className="sb-link" to="clientes"> <FaUserAlt /> Clientes</Link>
+                            </li>
+                            <li>
+                                <Link className="sb-link" to="ordenes"> <RiBillFill /> Ordenes</Link>
                             </li>
                             {/*<li>
                                 <Link className="sb-link" to="agenda"> <FaClipboardList /> Agenda</Link>

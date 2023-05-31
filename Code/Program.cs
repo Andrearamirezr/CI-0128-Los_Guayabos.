@@ -1,4 +1,5 @@
 using Ficus_App.Data;
+using Ficus_App.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FicusDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection")));
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IDetalleService, DetalleService>();
+builder.Services.AddScoped<IOrdenService, OrdenService>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
 
 var app = builder.Build();
 

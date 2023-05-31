@@ -1,4 +1,4 @@
-import '../VerProducto.css'
+import '../VerOrden.css'
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { BiEdit } from "react-icons/bi";
@@ -8,7 +8,7 @@ import FilaDetalles from './FilaDetalles'
 
 
 {/* Componente para consultar los datos de un producto */ }
-const DetallesProducto = (props) => {
+const DetallesOrden = (props) => {
     const navigate = useNavigate();
     const [data, setData] = useState()
     const [sku2] = useState(props.id)
@@ -22,7 +22,7 @@ const DetallesProducto = (props) => {
     };
 
     { /* Metodo para solicitar los datos del producto a la base de datos */ }
-    const consultarProducto = async () => {
+    const consultarOrden = async () => {
         //Pedir a la base de datos los datos del producto usando el id
         const response = await fetch("api/producto/ver/" + parseInt(sku2))
         if (response.ok) {
@@ -36,7 +36,7 @@ const DetallesProducto = (props) => {
     };
 
     useEffect(() => {
-        consultarProducto();
+        consultarOrden();
     }, []);
 
     return (
@@ -88,4 +88,4 @@ const DetallesProducto = (props) => {
     );
 }
 
-export default DetallesProducto;
+export default DetallesOrden;

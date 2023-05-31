@@ -1,17 +1,18 @@
-import './AgregarProducto.css'
+import './AgregarOrden.css'
 import { useNavigate } from 'react-router-dom'
 import FormularioAgregar from './components/FormularioAgregar';
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useState } from "react"
+import { MdCancelPresentation } from "react-icons/md";
 
-{/* Pagina para agregar un producto nuevo */ }
-const AgregarProducto = () => {
+{/* Pagina para agregar una orden nueva */ }
+const AgregarOrden = () => {
     const navigate = useNavigate();
 
     { /* Metodo para regresar a la pagina anterior */}
     const regresar = e => {
         e.preventDefault();
-        navigate('/inventario', {
+        navigate('/ordenes', {
             replace: true,
         });
     };
@@ -26,7 +27,12 @@ const AgregarProducto = () => {
                         </button>
                     </div>
                     <div className="col text-start pt-1">
-                        <h1>Agregar producto</h1>
+                        <h1>Agregar nueva orden:</h1>
+                    </div>
+                    <div className="col pt-2 text-end img-col">
+                        <button className="bt-cancelar ps-3 shadow-sm" onClick={regresar} >
+                            Cancelar<MdCancelPresentation className="i-cancelar m-1 ms-3" />
+                        </button>
                     </div>
                 </div>
                 <FormularioAgregar />
@@ -36,4 +42,4 @@ const AgregarProducto = () => {
     );
 }
 
-export default AgregarProducto;
+export default AgregarOrden;

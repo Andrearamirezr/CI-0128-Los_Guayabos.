@@ -7,8 +7,7 @@ function FilaInventario(props) {
 
     const detallesProducto = e => {
         e.preventDefault();
-        {/*navigate('detalles/'+toString(props.sku));*/ }
-        navigate('detalles/1');
+        navigate('detalles/'+props.id);
     };
     return (
         <tr onClick={ detallesProducto }>

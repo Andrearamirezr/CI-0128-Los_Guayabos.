@@ -8,15 +8,14 @@ function Card(props) {
 
     const detallesCliente = e => {
         e.preventDefault();
-        {/*navigate('detalles/'+toString(props.sku));*/ }
-        navigate('detalles/1');
+        navigate('detalles/' + props.id);
     };
 
     return (
         <div className="card" onClick={detallesCliente} >
-            <img className="card__image" src={myImage} alt={props.title} />
-            <h2 className="card__title">{props.title}</h2>
-            <p className="card__description">{props.description}</p>
+            <img className="card__image" src={myImage} alt="cliente" />
+            <h2 className="card__title">{props.empresa}</h2>
+            <p className="card__description">{props.segmento}</p>
         </div>
     );
 }

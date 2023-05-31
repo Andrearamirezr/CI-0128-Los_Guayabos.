@@ -36,7 +36,7 @@ namespace Ficus_App.Services
 
         public async Task<Producto> GetByIdAsync(int sku)
         {
-            var result = await _dbcontext.Productos.FirstOrDefaultAsync(n => n.Sku == sku);
+            var result = await _dbcontext.Productos.FirstOrDefaultAsync(n => n.Id == sku);
             return result;
         }
 
