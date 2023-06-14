@@ -12,10 +12,10 @@ GO
 
 CREATE TABLE [dbo].[Producto](
 	[SKU] [int] NOT NULL,
-	[Nombre] [text] NULL,
-	[Familia] [text] NULL,
-	[Descripción] [text] NULL,
-	[Dimensiones] [text] NOT NULL,
+	[Nombre] [varchar](50) NULL,
+	[Familia] [varchar](50) NULL,
+	[Descripcion] [varchar](max) NULL,
+	[Dimensiones] [varchar](50) NOT NULL,
 	[Peso] [float] NOT NULL,
 	[Peso_referencia] [float] NOT NULL,
 	[Precio_alquiler_comercios] [float] NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE [dbo].[Producto](
 (
 	[SKU] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
 
@@ -44,6 +44,7 @@ GO
 
 ALTER TABLE [dbo].[Categoria]  WITH CHECK ADD  CONSTRAINT [FK_Categoria_Producto] FOREIGN KEY([Id_producto])
 REFERENCES [dbo].[Producto] ([SKU])
+	--ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[Categoria] CHECK CONSTRAINT [FK_Categoria_Producto]
@@ -54,17 +55,18 @@ GO
 
 CREATE TABLE [dbo].[Color](
 	[ID_color] [int] NOT NULL,
-	[Color] [text] NOT NULL,
+	[Color] [varchar](50) NOT NULL,
 	[Id_producto] [int] NOT NULL,
  CONSTRAINT [PK_Color] PRIMARY KEY CLUSTERED 
 (
 	[ID_color] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[Color]  WITH CHECK ADD  CONSTRAINT [FK_Color_Producto] FOREIGN KEY([Id_producto])
 REFERENCES [dbo].[Producto] ([SKU])
+	--ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[Color] CHECK CONSTRAINT [FK_Color_Producto]
@@ -86,6 +88,7 @@ GO
 
 ALTER TABLE [dbo].[Stock]  WITH CHECK ADD  CONSTRAINT [FK_Stock_Producto] FOREIGN KEY([Id_producto])
 REFERENCES [dbo].[Producto] ([SKU])
+	--ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[Stock] CHECK CONSTRAINT [FK_Stock_Producto]
@@ -98,30 +101,32 @@ CREATE TABLE [dbo].[Orden](
 	[Consecutivo] [int] NOT NULL,
 	[Monto_total] [float] NULL,
 	[Feria_verde] [bit] NULL,
-	[Detalle_orden] [text] NULL,
+	[Detalle_orden] [varchar](max) NULL,
 	[Fecha_alquiler] [datetime] NOT NULL,
-	[Fecha_terminación] [datetime] NOT NULL,
+	[Fecha_terminacion] [datetime] NOT NULL,
  CONSTRAINT [PK_Orden] PRIMARY KEY CLUSTERED 
 (
 	[Consecutivo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
 --TABLA PARA Estado
 CREATE TABLE [dbo].[Estado](
 	[ID_estado] [int] NOT NULL,
-	[Estado] [text] NOT NULL,
+	[Estado] [varchar](50) NOT NULL,
 	[Id_orden] [int] NOT NULL,
  CONSTRAINT [PK_Estado] PRIMARY KEY CLUSTERED 
 (
 	[ID_estado] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
+	--ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[Estado]  WITH CHECK ADD  CONSTRAINT [FK_Estado_Orden] FOREIGN KEY([Id_orden])
 REFERENCES [dbo].[Orden] ([Consecutivo])
+	--ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[Estado] CHECK CONSTRAINT [FK_Estado_Orden]
@@ -149,6 +154,7 @@ GO
 
 ALTER TABLE [dbo].[orden_producto]  WITH CHECK ADD  CONSTRAINT [FK_orden_producto_Producto] FOREIGN KEY([Id_producto])
 REFERENCES [dbo].[Producto] ([SKU])
+	--ON DELETE CASCADE ON UPDATE CASCADE
 GO
 
 ALTER TABLE [dbo].[orden_producto] CHECK CONSTRAINT [FK_orden_producto_Producto]
@@ -158,68 +164,71 @@ GO
 -------------------------CLIENTE-----------------------------------------
 --TABLA CLIENTE
 CREATE TABLE [dbo].[Cliente](
-	[ID cliente] [int] NOT NULL,
+	[ID_cliente] [int] NOT NULL,
 	[Empresa] [varchar](50) NOT NULL,
 	[Responsable] [varchar](50) NOT NULL,
-	[Nombre Contacto] [varchar](50) NOT NULL,
+	[Nombre_contacto] [varchar](50) NOT NULL,
 	[Telefono] [int] NOT NULL,
 	[Correo] [varchar](50) NULL,
-	[Pagina Web] [varchar](50) NULL,
-	[Fecha creacion] [date] NOT NULL,
+	[Pagina_Web] [varchar](50) NULL,
+	[Fecha_creacion] [datetime] NOT NULL,
  CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
 (
-	[ID cliente] ASC
+	[ID_cliente] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
 --TABLA MEDIO DE COMUNICACION
-CREATE TABLE [dbo].[Medio de comunicación](
-	[ID Medio] [int] NOT NULL,
+CREATE TABLE [dbo].[Medio_de_comunicacion](
+	[ID_medio] [int] NOT NULL,
 	[Medio] [varchar](50) NOT NULL,
- CONSTRAINT [PK_Medio de comunicación] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Medio_de_comunicacion] PRIMARY KEY CLUSTERED 
 (
-	[ID Medio] ASC
+	[ID_medio] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
 --TABLA SEGMENTO
 CREATE TABLE [dbo].[Segmento](
-	[ID Segmento] [int] NOT NULL,
-	[Tipo de comercio] [varchar](50) NOT NULL,
+	[ID_segmento] [int] NOT NULL,
+	[Tipo_de_comercio] [varchar](50) NOT NULL,
  CONSTRAINT [PK_Segmento] PRIMARY KEY CLUSTERED 
 (
-	[ID Segmento] ASC
+	[ID_segmento] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
 --TABLA RELACION CLIENTE-MEDIO DE COMUNICACION
-CREATE TABLE [dbo].[Cliente - Medio de comunicación](
-	[ID Cliente] [int] NOT NULL,
-	[ID Medio] [int] NOT NULL
-	CONSTRAINT [FK ID Cliente] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
-	CONSTRAINT [FK ID Medio] FOREIGN KEY ([ID Medio]) REFERENCES [Medio de comunicación] ([ID Medio]),
+CREATE TABLE [dbo].[Cliente_Medio_de_comunicacion](
+	[ID_cliente] [int] NOT NULL,
+	[ID_medio] [int] NOT NULL
+	CONSTRAINT [FK ID_cliente] FOREIGN KEY ([ID_cliente]) REFERENCES Cliente ([ID_cliente]),
+	CONSTRAINT [FK ID_medio] FOREIGN KEY ([ID_medio]) REFERENCES [Medio_de_comunicacion] ([ID_medio]),
+		--ON DELETE CASCADE ON UPDATE CASCADE
 ) ON [PRIMARY]
 GO
 
 --TABLA CLIENTE-SEGMENTO
-CREATE TABLE [dbo].[Cliente - Segmento](
-	[ID Cliente] [int] NOT NULL,
-	[ID Segmento] [int] NOT NULL
-	CONSTRAINT [FK ID ClienteSeg] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
-	CONSTRAINT [FK ID Segmento] FOREIGN KEY ([ID Segmento]) REFERENCES [Segmento] ([ID Segmento])
+CREATE TABLE [dbo].[Cliente_Segmento](
+	[ID_cliente] [int] NOT NULL,
+	[ID_segmento] [int] NOT NULL
+	CONSTRAINT [FK ID_clienteSeg] FOREIGN KEY ([ID_cliente]) REFERENCES Cliente ([ID_cliente]),
+	CONSTRAINT [FK ID_segmento] FOREIGN KEY ([ID_segmento]) REFERENCES [Segmento] ([ID_segmento])
+		--ON DELETE CASCADE ON UPDATE CASCADE
 ) ON [PRIMARY]
 GO
 
---TABLA PRIORIDAD CLIENTE
-CREATE TABLE [dbo].[Prioridad Cliente](
-	[ID Cliente] [int] NOT NULL,
+--TABLA Prioridad Cliente
+CREATE TABLE [dbo].[Prioridad_Cliente](
+	[ID_cliente] [int] NOT NULL,
 	[Baja] [int] NULL,
 	[Media] [int] NULL,
 	[Alta] [int] NULL
-	CONSTRAINT [FK ID ClientePrio] FOREIGN KEY ([ID Cliente]) REFERENCES Cliente ([ID cliente]),
+	CONSTRAINT [FK ID_clientePrio] FOREIGN KEY ([ID_cliente]) REFERENCES Cliente ([ID_cliente]),
+		--ON DELETE CASCADE
 ) ON [PRIMARY]
 GO
 
@@ -238,6 +247,7 @@ CREATE TABLE nombre_usuario (
   apellido1 TEXT NOT NULL,
   apellido2 TEXT NOT NULL,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+	--ON DELETE CASCADE
 );
 
 -- TABLA ROL
@@ -252,6 +262,7 @@ CREATE TABLE usuario_rol(
   id_rol INTEGER,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
   FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
+	--ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- TABLA PERMISOS
@@ -266,6 +277,7 @@ CREATE TABLE permisos (
   agregar_cliente BIT,
   editar_cliente BIT,
   FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
+	--ON DELETE CASCADE
 );
 
 
@@ -273,7 +285,8 @@ CREATE TABLE usuario_cliente(
   id_usuario INTEGER,
   id_cliente INTEGER,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-  FOREIGN KEY (id_usuario) REFERENCES Cliente([ID cliente])
+  FOREIGN KEY (id_usuario) REFERENCES Cliente([ID_cliente])
+	--ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 --TABLA RELACION USUARIO-PRODUCTO
