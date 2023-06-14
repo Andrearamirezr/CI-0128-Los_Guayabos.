@@ -5,6 +5,8 @@ namespace Ficus_App.Models;
 
 public partial class Detalle
 {
+    public int Id { get; set; }
+
     public string Consecutivo { get; set; } = null!;
 
     public string Sku { get; set; } = null!;

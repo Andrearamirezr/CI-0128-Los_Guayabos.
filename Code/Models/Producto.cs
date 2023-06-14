@@ -17,7 +17,7 @@ public partial class Producto
 
     public string Color { get; set; } = null!;
 
-    public string? Descripción { get; set; }
+    public string? Descripcion { get; set; }
 
     public string Dimensiones { get; set; } = null!;
 

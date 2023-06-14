@@ -65,10 +65,9 @@ public partial class FicusDbContext : DbContext
 
         modelBuilder.Entity<Detalle>(entity =>
         {
-            entity.HasKey(e => e.Consecutivo);
-
             entity.ToTable("Detalle");
 
+            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Consecutivo)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -132,7 +131,7 @@ public partial class FicusDbContext : DbContext
             entity.Property(e => e.CantidadTotal).HasColumnName("Cantidad_total");
             entity.Property(e => e.Categoria).HasColumnType("text");
             entity.Property(e => e.Color).HasColumnType("text");
-            entity.Property(e => e.Descripción).HasColumnType("text");
+            entity.Property(e => e.Descripcion).HasColumnType("text");
             entity.Property(e => e.Dimensiones).HasColumnType("text");
             entity.Property(e => e.Familia).HasColumnType("text");
             entity.Property(e => e.Lote).HasColumnName("lote");

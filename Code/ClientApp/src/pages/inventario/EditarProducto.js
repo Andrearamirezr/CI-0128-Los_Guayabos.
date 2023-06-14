@@ -1,10 +1,10 @@
 import './VerProducto.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import DetallesProducto from './components/DetallesProducto';
+import FormularioEditarProducto from './components/FormularioEditarProducto';
 
-{/* Pagina para ver en detalle un producto */ }
-const VerProducto = () => {
+{/* Pagina para editar un producto */ }
+const EditarProducto = () => {
     const params = useParams();
     const navigate = useNavigate();
 
@@ -26,14 +26,14 @@ const VerProducto = () => {
                         </button>
                     </div>
                     <div className="col text-start pt-1">
-                        <h1>Detalles producto</h1>
+                        <h1>Editar producto</h1>
                     </div>
                 </div>
-                
-                <DetallesProducto id={params.sku} />
+
+                <FormularioEditarProducto id={params.sku} />
             </div>
         </div>
     );
 }
 
-export default VerProducto;
+export default EditarProducto;

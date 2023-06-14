@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-{/* Componente para agregar filas a la tabla de productos del inventario 
-  * Se recibe por parametro todos los datos de un producto */ }
+import { BiEdit } from "react-icons/bi"
 
 function FilaInventario(props) {
     const navigate = useNavigate();
@@ -9,15 +8,26 @@ function FilaInventario(props) {
         e.preventDefault();
         navigate('detalles/'+props.id);
     };
+
+    const editar = e => {
+        e.preventDefault();
+        navigate('editar/'+props.id);
+    };
+
     return (
-        <tr onClick={ detallesProducto }>
-            <th scope="row">{ props.sku }</th>
-            <td>{ props.categoria }</td>
-            <td>{ props.descripcion }</td>
-            <td>{ props.peso }</td>
-            <td>{ props.color }</td>
-            <td>{ props.cantidad }</td>
-            <td>{ props.disponibles }</td>
+        <tr>
+            <th scope="row" onClick={detallesProducto}>{ props.sku }</th>
+            <td onClick={detallesProducto}>{ props.categoria }</td>
+            <td onClick={detallesProducto}>{ props.descripcion }</td>
+            <td onClick={detallesProducto}>{ props.peso }</td>
+            <td onClick={detallesProducto}>{ props.color }</td>
+            <td onClick={detallesProducto}>{ props.cantidad }</td>
+            <td onClick={detallesProducto}>{props.disponibles}</td>
+            <td>
+                <button className="bt-cancelar ps-3 shadow-sm" onClick={editar} >
+                    Editar<BiEdit className="i-cancelar m-1 ms-3" />
+                </button>
+            </td>
         </tr>
     );
 }

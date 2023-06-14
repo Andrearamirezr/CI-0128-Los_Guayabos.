@@ -2,28 +2,29 @@ import '../AgregarProducto.css'
 import { useNavigate } from 'react-router-dom'
 import { MdCancelPresentation } from "react-icons/md";
 import ImgPlaceholder from '../../../assets/AddImgPlaceholder.jpg'
-import { useState} from "react"
-
-const modeloProducto = {
-    id: 7,
-    sku: "",
-    nombre: "",
-    familia: "",
-    categoria: "",
-    color: "",
-    descripcion: "",
-    dimensiones: "",
-    peso: 0.0,
-    pesoReferencia: 0.0,
-    precioAlquiler: 0.0,
-    precioRetail: 0.0,
-    cantidadTotal: 0.0,
-    cantidadDisponible: 0.0,
-    lote: 0
-}
+import { useEffect, useState} from "react"
 
 {/* Componente para ingresar los datos de un nuevo producto */ }
 const FormularioAgregar = (props) => {
+    const counter = parseInt(localStorage.getItem('idp')) || 32
+    const [id, setId] = useState(counter)
+    const modeloProducto = {
+        id: counter,
+        sku: "",
+        nombre: "",
+        familia: "",
+        categoria: "",
+        color: "",
+        descripcion: "",
+        dimensiones: "",
+        peso: 0.0,
+        pesoReferencia: 0.0,
+        precioAlquiler: 0.0,
+        precioRetail: 0.0,
+        cantidadTotal: 0.0,
+        cantidadDisponible: 0.0,
+        lote: 0
+    }
     const [producto, setProducto] = useState(modeloProducto)
     const navigate = useNavigate();
 
@@ -42,23 +43,33 @@ const FormularioAgregar = (props) => {
         });
     };
 
-    { /* Metodo para solicitar agregar los datos del formulario a la base de datos */ }
-    const confirmar = async (producto) => {
+    // Metodo para solicitar agregar los datos del formulario a la base de datos
+    const confirmar = async (e) => {
+        e.preventDefault();
         // Agregar a la base de datos
-        const response = await fetch("api/producto/agregar", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(producto)
-        })
-        if (response.ok) {
-            // Regresar a la tabla de productos
-            navigate('/inventario', {
-                replace: true,
+        try {
+            setId(id + 1)
+            const response = await fetch(window.location.origin + "/api/producto/agregar", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(producto),
             });
+            
+        } catch (err) {
+            console.log('Error: ', err)
         }
+        setId(id + 1);
+        navigate('/inventario', {
+            replace: true,
+        });
     };
+
+    useEffect(() => {
+        console.log(JSON.stringify(producto), id)
+        localStorage.setItem('idp', (id).toString())
+    }, [id, producto])
 
     return (
         <form onSubmit={confirmar}>
@@ -110,26 +121,26 @@ const FormularioAgregar = (props) => {
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Peso:</span>
                     <input name="peso" onChange={(e) => actualizarProducto(e)} value={producto.peso}
-                        type="text" aria-label="Peso recipiente" placeholder="Peso" class="form-control input-form" />
+                        type="number" aria-label="Peso recipiente" placeholder="Peso" class="form-control input-form" />
                     <span class="input-group-text bg-span">Peso referencia:</span>
                     <input name="pesoReferencia" onChange={(e) => actualizarProducto(e)} value={producto.pesoReferencia}
-                        type="text" aria-label="Peso desechable" placeholder="Peso referencia" class="form-control input-form" />
+                        type="number" aria-label="Peso desechable" placeholder="Peso referencia" class="form-control input-form" />
                 </div>
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Precio alquiler:</span>
                     <input name="precioAlquiler" onChange={(e) => actualizarProducto(e)} value={producto.precioAlquiler}
-                        type="text" aria-label="Precio alquiler" placeholder="Precio alquiler" class="form-control input-form" />
+                        type="number" aria-label="Precio alquiler" placeholder="Precio alquiler" class="form-control input-form" />
                     <span class="input-group-text bg-span">Precio retail:</span>
                     <input name="precioRetail" onChange={(e) => actualizarProducto(e)} value={producto.precioRetail}
-                        type="text" aria-label="Precio retail" placeholder="Precio retail" class="form-control input-form" />
+                        type="number" aria-label="Precio retail" placeholder="Precio retail" class="form-control input-form" />
                 </div>
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Cantidad total:</span>
                     <input name="cantidadTotal" onChange={(e) => actualizarProducto(e)} value={producto.cantidadTotal}
-                        type="text" aria-label="Cantidad total" placeholder="Cantidad total" class="form-control input-form-end" />
+                        type="number" aria-label="Cantidad total" placeholder="Cantidad total" class="form-control input-form-end" />
                     <span class="input-group-text bg-span">Lote:</span>
                     <input name="lote" onChange={(e) => actualizarProducto(e)} value={producto.lote}
-                        type="text" aria-label="Lote" placeholder="Lote" class="form-control input-form-end" />
+                        type="number" aria-label="Lote" placeholder="Lote" class="form-control input-form-end" />
                 </div>
             </div>
             <div className="row m-4 text-center">

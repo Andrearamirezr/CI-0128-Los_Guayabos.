@@ -1,17 +1,17 @@
-import './VerProducto.css'
+import './VerCliente.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import DetallesProducto from './components/DetallesProducto';
+import FormularioEditarCliente from './components/FormularioEditarCliente';
 
-{/* Pagina para ver en detalle un producto */ }
-const VerProducto = () => {
+{/* Pagina para editar un cliente */ }
+const EditarCliente = () => {
     const params = useParams();
     const navigate = useNavigate();
 
     { /* Metodo para regresar a la pagina anterior */ }
     const regresar = e => {
         e.preventDefault();
-        navigate('/inventario', {
+        navigate('/clientes', {
             replace: true,
         });
     };
@@ -26,14 +26,14 @@ const VerProducto = () => {
                         </button>
                     </div>
                     <div className="col text-start pt-1">
-                        <h1>Detalles producto</h1>
+                        <h1>Editar cliente</h1>
                     </div>
                 </div>
-                
-                <DetallesProducto id={params.sku} />
+
+                <FormularioEditarCliente id={params.id} />
             </div>
         </div>
     );
 }
 
-export default VerProducto;
+export default EditarCliente;

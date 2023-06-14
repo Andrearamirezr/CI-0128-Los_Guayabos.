@@ -5,10 +5,11 @@ import Dashboard from '../pages/dashboard/Dashboard'
 import Inventario from '../pages/inventario/Inventario'
 import AgregarProducto from '../pages/inventario/AgregarProducto';
 import VerProducto from '../pages/inventario/VerProducto';
-// import EditarProducto from '../pages/inventario/EditarProducto';
+import EditarProducto from '../pages/inventario/EditarProducto';
 import Clientes from '../pages/clientes/Clientes';
 import AgregarCliente from '../pages/clientes/AgregarCliente';
 import VerCliente from '../pages/clientes/VerCliente';
+import EditarCliente from '../pages/clientes/EditarCliente';
 import Ordenes from '../pages/ordenes/Ordenes';
 import AgregarOrden from '../pages/ordenes/AgregarOrden';
 import VerOrden from '../pages/ordenes/VerOrden';
@@ -24,7 +25,7 @@ const AppRouter = () => {
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="inventario" element={<Inventario />} />
                     <Route path="inventario/agregar" element={<AgregarProducto />} />
-                    { /*<Route exact path="inventario/editar/:sku" element={<EditarProducto />} />*/ }
+                    <Route exact path="inventario/editar/:sku" element={<EditarProducto />} />
                     <Route exact path="inventario/detalles/:sku" element={<VerProducto />} />
                     <Route path="ordenes" element={<Ordenes />} />
                     <Route path="ordenes/agregar" element={<AgregarOrden />} />
@@ -32,7 +33,7 @@ const AppRouter = () => {
                     <Route path="ordenes/detalles/:id" element={<VerOrden />} />
                     <Route path="clientes" element={<Clientes />} />
                     <Route path="clientes/agregar" element={<AgregarCliente />} />
-                    { /*<Route path="clientes/editar/:id" element={<EditarCliente />} />*/}
+                    <Route path="clientes/editar/:id" element={<EditarCliente />} />
                     <Route path="clientes/detalles/:id" element={<VerCliente />} />
                     { /*<Route path="agenda" element={<Agenda />} />*/}
                 </Route>

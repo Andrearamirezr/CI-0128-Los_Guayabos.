@@ -11,6 +11,7 @@ const TablaInventario = (props) => {
         if (response.ok) {
             const data = await response.json()
             setProductos(data)
+            console.log(response)
         } else {
             console.log("error al obtener productos")
         }
@@ -34,6 +35,7 @@ const TablaInventario = (props) => {
                         <th scope="col">Color</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Disponibles</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,19 +44,21 @@ const TablaInventario = (props) => {
                     {
                         (productos.length < 1) ? (
                             <tr>
-                                <td colSpan="7">No hay productos para mostrar</td>
+                                <td colSpan="8">No hay productos para mostrar</td>
                             </tr>
                         ) : (
                             productos.map((item) => (
                                 <FilaInventario
-                                    id={ item.id }
-                                    sku={ item.sku }
-                                    categoria={ item.categoria }
-                                    descripcion={ item.descripción }
-                                    peso={ item.peso }
-                                    color={ item.color }
-                                    cantidad={ item.cantidadTotal }
-                                    disponibles={ item.cantidadDisponible } />
+                                    id={item.id}
+                                    sku={item.sku}
+                                    categoria={item.categoria}
+                                    descripcion={item.descripcion}
+                                    peso={item.peso}
+                                    color={item.color}
+                                    cantidad={item.cantidadTotal}
+                                    disponibles={item.cantidadDisponible}
+                                    producto={item}
+                                />
                             ))
                         )
                     }

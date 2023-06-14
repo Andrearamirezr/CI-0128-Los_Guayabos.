@@ -36,14 +36,27 @@ namespace Ficus_App.Services
 
         public async Task<Cliente> GetByIdAsync(int id)
         {
-            var result = await _dbcontext.Clientes.FirstOrDefaultAsync(n => n.Id == id);
+            var result = await _dbcontext.Clientes.FindAsync(id);
             return result;
         }
 
         public async Task<Cliente> UpdateAsync(int id, Cliente newClient)
         {
             var client = await _dbcontext.Clientes.FindAsync(id);
-            _dbcontext.Update(newClient);
+            client.Id = newClient.Id;
+            client.Empresa = newClient.Empresa;
+            client.FechaCreacion = newClient.FechaCreacion;
+            client.Segmento = newClient.Segmento;
+            client.Responsable = newClient.Responsable;
+            client.Prioridad = newClient.Prioridad;
+            client.Estado = newClient.Estado;
+            client.Medio = newClient.Medio;
+            client.Contacto = newClient.Contacto;
+            client.Correo = newClient.Correo;
+            client.Telefono = newClient.Telefono;
+            client.PaginaWeb = newClient.PaginaWeb;
+
+            //_dbcontext.Update(newClient);
             await _dbcontext.SaveChangesAsync();
             return newClient;
         }

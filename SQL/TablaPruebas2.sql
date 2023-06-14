@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Producto](
 	[Familia] [text] NULL,
 	[Categoria] [text] NOT NULL,
 	[Color] [text] NOT NULL,
-	[Descripción] [text] NULL,
+	[Descripcion] [text] NULL,
 	[Dimensiones] [text] NOT NULL,
 	[Peso] [float] NOT NULL,
 	[Peso referencia] [float] NOT NULL,
@@ -81,6 +81,7 @@ GO
 --TABLA PARA STOCK
 
 CREATE TABLE [dbo].[Detalle](
+	[Id] [int] NOT NULL,
 	[Consecutivo] [varchar](50) NOT NULL,
 	[Sku] [varchar](50) NOT NULL,
 	[Ordenados] [int] NOT NULL,
@@ -89,7 +90,7 @@ CREATE TABLE [dbo].[Detalle](
 	[Sin usar] [int] NOT NULL,
 	CONSTRAINT [PK_Detalle] PRIMARY KEY CLUSTERED 
 (
-	[Consecutivo] ASC
+	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
