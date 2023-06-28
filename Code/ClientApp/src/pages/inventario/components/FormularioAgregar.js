@@ -6,7 +6,11 @@ import { useEffect, useState} from "react"
 
 {/* Componente para ingresar los datos de un nuevo producto */ }
 const FormularioAgregar = (props) => {
-    const counter = parseInt(localStorage.getItem('idp')) || 32
+    const counter = parseInt(localStorage.getItem('idp')) || 60
+    const colores = ["Rojo", "Azul", "Amarillo", "Blanco", "Verde", "Anaranjado", "Negro", "Cafe", "Gris", "Morado", "Rosado"]
+    const familias = ["Costas", "Paramos", "Bosques", "-"]
+    const categorias = ["Medio", "Sopa", "Compartimientos", "Plato", "Plato sopa", "Vaso", "Sin division"]
+
     const [id, setId] = useState(counter)
     const modeloProducto = {
         id: counter,
@@ -97,16 +101,28 @@ const FormularioAgregar = (props) => {
                     <input name="nombre" onChange={(e) => actualizarProducto(e)} value={producto.nombre}
                         type="text" aria-label="Nombre" placeholder="Nombre" class="form-control input-form" />
                     <span class="input-group-text bg-span">Familia:</span>
-                    <input name="familia" onChange={(e) => actualizarProducto(e)} value={producto.familia}
-                        type="text" aria-label="Familia" placeholder="Familia" class="form-control input-form" />
+                    <select name="familia" className="form-control input-form" caret
+                        onChange={(e) => actualizarProducto(e)} value={producto.familia}>
+                        {familias.map(item => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
+                    </select>
                 </div>
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Categoria:</span>
-                    <input name="categoria" onChange={(e) => actualizarProducto(e)} value={producto.categoria}
-                        type="text" aria-label="Categoria" placeholder="Categoria" class="form-control input-form" />
+                    <select name="categoria" className="form-control input-form" caret
+                        onChange={(e) => actualizarProducto(e)} value={producto.categoria}>
+                        {categorias.map(item => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
+                    </select>
                     <span class="input-group-text bg-span">Color:</span>
-                    <input name="color" onChange={(e) => actualizarProducto(e)} value={producto.color}
-                        type="text" aria-label="Color" placeholder="Color" class="form-control input-form" />
+                    <select name="color" className="form-control input-form" caret
+                        onChange={(e) => actualizarProducto(e)} value={producto.color}>
+                        {colores.map(item => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
+                    </select>
                 </div>
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Descripcion:</span>

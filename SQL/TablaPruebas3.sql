@@ -26,5 +26,13 @@ INSERT INTO [dbo].[Cliente] VALUES(17,'Soda 4',CAST('17/12/2020' as date),'Soda'
 INSERT INTO [dbo].[Cliente] VALUES(18,'Colegio 3',CAST('17/12/2020' as date),'Colegio','Andrea', 'Alta','Cliente', 'Web', 'Pedro',70,'correo.mail','web.com')
 INSERT INTO [dbo].[Cliente] VALUES(19,'Soda 5',CAST('17/12/2020' as date),'Soda','Andrea', 'Alta','Cliente', 'Web', 'Pedro',70,'correo.mail','web.com')
 
+INSERT INTO [dbo].[Orden] VALUES(51,'Orden-5','24/1/2021','Feria verde','Si', 'Completada','a', '460', '50','410','460','26/1/2021','29.470')
+INSERT INTO [dbo].[Orden] VALUES(41,'Orden-4','16/1/2021','Feria verde','Si', 'Completada','a', '350', '100','250','350','19/1/2021','20.000')
+INSERT INTO [dbo].[Orden] VALUES(31,'Orden-3','10/1/2021','Feria verde','Si', 'Completada','a', '400', '50','350', '400','13/1/2021','27.550')
+INSERT INTO [dbo].[Orden] VALUES(21,'Orden-2','3/1/2021','Feria verde','Si', 'Completada','a', '350', '67','283','350','5/1/2021','22.350')
+INSERT INTO [dbo].[Orden] VALUES(20,'Orden-1','17/12/2020','Feria verde','Si', 'Completada','a', '350', '50','300','350','19/12/2020','25.000')
+
+
 SELECT * FROM [dbo].[Producto]
+SELECT * FROM [dbo].[Orden]
 SELECT * FROM [dbo].[Cliente]

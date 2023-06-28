@@ -1,7 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-{/* Componente para agregar filas a la tabla de ordenes 
-  * Se recibe por parametro todos los datos de una orden */ }
-
 function FilaOrden(props) {
     const navigate = useNavigate();
 

@@ -6,7 +6,11 @@ import { useEffect, useState } from "react"
 
 {/* Componente para ingresar los datos de un nuevo producto */ }
 function FormularioAgregar(props) {
-    const counter = parseInt(localStorage.getItem('idc')) || 32
+    const counter = parseInt(localStorage.getItem('idc')) || 43
+    const segmentos = ["Cafeteria", "Catering", "Centro educativo", "Comida preparada", "Empresa", "Feria",
+        "Panaderia", "Restaurante", "Usuario final", "Supermercado", "Otro sector"]
+    const prioridades = ["Alta", "Media", "Baja", "-"]
+    const estados = ["Cliente", "Cliente nuevo", "-"]
     const [id, setId] = useState(counter)
     const modeloCliente = {
         id: counter,
@@ -93,21 +97,33 @@ function FormularioAgregar(props) {
                     <input name="fechaCreacion" onChange={(e) => actualizarCliente(e)} value={cliente.fechaCreacion}
                         type="text" aria-label="Fecha creacion" placeholder="Fecha de creacion" class="form-control input-form" />
                     <span class="input-group-text bg-span">Segmento:</span>
-                    <input name="segmento" onChange={(e) => actualizarCliente(e)} value={cliente.segmento}
-                        type="text" aria-label="Segmento" placeholder="Segmento" class="form-control input-form" />
+                    <select name="segmento" className="form-control input-form" caret
+                        onChange={(e) => actualizarCliente(e)} value={cliente.segmento}>
+                        {segmentos.map(item => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
+                    </select>
                 </div>
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Responsable:</span>
                     <input name="responsable" onChange={(e) => actualizarCliente(e)} value={cliente.responsable}
                         type="text" aria-label="Responsable" placeholder="Responsable" class="form-control input-form" />
                     <span class="input-group-text bg-span">Prioridad:</span>
-                    <input name="prioridad" onChange={(e) => actualizarCliente(e)} value={cliente.prioridad}
-                        type="text" aria-label="Prioridad" placeholder="Prioridad" class="form-control input-form" />
+                    <select name="prioridad" className="form-control input-form" caret
+                        onChange={(e) => actualizarCliente(e)} value={cliente.prioridad}>
+                        {prioridades.map(item => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
+                    </select>
                 </div>
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Estado:</span>
-                    <input name="estado" onChange={(e) => actualizarCliente(e)} value={cliente.estado}
-                        type="text" aria-label="Estado" placeholder="Estado" class="form-control input-form" />
+                    <select name="estado" className="form-control input-form" caret
+                        onChange={(e) => actualizarCliente(e)} value={cliente.estado}>
+                        {estados.map(item => (
+                            <option key={item} value={item}>{item}</option>
+                        ))}
+                    </select>
                     <span class="input-group-text bg-span">Medio comunicacion:</span>
                     <input name="medio" onChange={(e) => actualizarCliente(e)} value={cliente.medio}
                         type="text" aria-label="Medio comunicacion" placeholder="Medio comunicacion" class="form-control input-form" />

@@ -16,15 +16,6 @@ const VerCliente = () => {
         });
     };
 
-    /* Metodo para navegar a la pagina de editar*/
-    /*const editar = e => {
-        e.preventDefault();
-        {/*navigate('clientes/editar/'+toString(props.sku)); }
-        navigate('clientes/editar/1', {
-            replace: false,
-        });
-    };  }*/
-
     return (
         <div className="container-fluid bg-vp p-4 min-vh-100">
             <div className="bg-surface m-4 p-4 rounded-4 shadow">
