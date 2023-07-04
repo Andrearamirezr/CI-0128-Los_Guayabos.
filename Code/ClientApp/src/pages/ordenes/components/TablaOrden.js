@@ -35,6 +35,7 @@ const TablaOrden = (props) => {
                         <th scope="col">Usados</th>
                         <th scope="col">Devueltos</th>
                         <th scope="col">Fecha</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +44,7 @@ const TablaOrden = (props) => {
                     {
                         (ordenes.length < 1) ? (
                             <tr>
-                                <td colSpan="8">No hay ordenes para mostrar</td>
+                                <td colSpan="9">No hay ordenes para mostrar</td>
                             </tr>
                         ) : (
                             ordenes.map((item) => (

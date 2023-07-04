@@ -13,6 +13,7 @@ import EditarCliente from '../pages/clientes/EditarCliente';
 import Ordenes from '../pages/ordenes/Ordenes';
 import AgregarOrden from '../pages/ordenes/AgregarOrden';
 import VerOrden from '../pages/ordenes/VerOrden';
+import EditarOrden from '../pages/ordenes/EditarOrden';
 
 { /* Componente para controlar la navegacion con rutas */ }
 const AppRouter = () => {
@@ -29,7 +30,7 @@ const AppRouter = () => {
                     <Route exact path="inventario/detalles/:sku" element={<VerProducto />} />
                     <Route path="ordenes" element={<Ordenes />} />
                     <Route path="ordenes/agregar" element={<AgregarOrden />} />
-                    { /*<Route path="ordenes/editar/:id" element={<EditarOrden />} />*/}
+                    <Route path="ordenes/editar/:id" element={<EditarOrden />} />
                     <Route path="ordenes/detalles/:id" element={<VerOrden />} />
                     <Route path="clientes" element={<Clientes />} />
                     <Route path="clientes/agregar" element={<AgregarCliente />} />

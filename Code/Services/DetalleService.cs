@@ -43,7 +43,14 @@ namespace Ficus_App.Services
         public async Task<Detalle> UpdateAsync(int consecutivo, Detalle newDetalle)
         {
             var detalle = await _dbcontext.Detalles.FindAsync(consecutivo);
-            _dbcontext.Update(newDetalle);
+            detalle.Id = newDetalle.Id;
+            detalle.Consecutivo = newDetalle.Consecutivo;
+            detalle.Sku = newDetalle.Sku;
+            detalle.Ordenados = newDetalle.Ordenados;
+            detalle.Devueltos = newDetalle.Devueltos;
+            detalle.Usados = newDetalle.Usados;
+            detalle.SinUsar = newDetalle.SinUsar;
+            //_dbcontext.Update(newDetalle);
             await _dbcontext.SaveChangesAsync();
             return newDetalle;
         }

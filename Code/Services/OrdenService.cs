@@ -43,7 +43,20 @@ namespace Ficus_App.Services
         public async Task<Orden> UpdateAsync(int id, Orden newOrden)
         {
             var orden = await _dbcontext.Ordens.FindAsync(id);
-            _dbcontext.Update(newOrden);
+            orden.Id = newOrden.Id;
+            orden.Consecutivo = newOrden.Consecutivo;
+            orden.FechaAlquiler = newOrden.FechaAlquiler;
+            orden.Cliente = newOrden.Cliente;
+            orden.FeriaVerde = newOrden.FeriaVerde;
+            orden.Estado = newOrden.Estado;
+            orden.Productos = newOrden.Productos;
+            orden.Ordenados = newOrden.Ordenados;
+            orden.SinUsar = newOrden.SinUsar;
+            orden.Usados = newOrden.Usados;
+            orden.Devueltos = newOrden.Devueltos;
+            orden.FechaFinalizacion = newOrden.FechaFinalizacion;
+            orden.Monto = newOrden.Monto;
+            //_dbcontext.Update(newOrden);
             await _dbcontext.SaveChangesAsync();
             return newOrden;
         }

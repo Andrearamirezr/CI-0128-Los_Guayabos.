@@ -27,7 +27,7 @@ const Login = () => {
                         <div className="container logo">
                             <img src={ logotipo } className="img-fluid rounded-circle" alt=""/>
                         </div>
-                        <h1 className="text-center">&iexcl;Adios reciduos!</h1>
+                        <h1 className="text-center">&iexcl;Adios residuos!</h1>
                         <p className="m-4 px-4 fs-5 text-center">
                             Ayudamos a los comercios de alimentos a sustituir sus
                             recipientes desechables por retornables.

@@ -1,15 +1,22 @@
-import '../AgregarOrden.css'
+import '../VerOrden.css'
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from "react"
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
-// Componente para ingresar los datos de una nueva Orden
-const FormularioAgregar = (props) => {
+
+{/* Componente para editar los datos de una orden */ }
+const DetallesOrden = (props) => {
     const navigate = useNavigate();
-    const counter = parseInt(localStorage.getItem('ido')) || 1
     const counterDetalle = parseInt(localStorage.getItem('cd')) || 100
-    const [id, setId] = useState(counter)
     const [idDetalle, setIdDetalle] = useState(counterDetalle)
     const estados = ["Reservado", "Preparado", "En alquiler", "Limpiado", "Facturado", "Completado"]
+    const [orden, setOrden] = useState()
+    const [productosGet, setProductosGet] = useState(true)
+    const [id, setId] = useState(props.id)
+    const [isLoading, setIsLoading] = useState(true);
+    const [detalle, setDetalle] = useState([])
+    const [detalles, setDetalles] = useState([])
+    const [editarDetalles, setEditarDetalles] = useState(counterDetalle)
     const [productos, setProductos] = useState([])
 
     const obtenerProductos = async () => {
@@ -22,28 +29,34 @@ const FormularioAgregar = (props) => {
             console.log("error al obtener productos")
         }
     }
+    const agregarNuevoDetalle = (item) => {
+        setDetalles(prevDetalles => [...prevDetalles, item]);
+    };
+
+    const agregarDetalles = (jsonResponse) => {
+        detalle.map(item => {
+            if (item.consecutivo == jsonResponse.consecutivo) {
+                agregarNuevoDetalle(item)
+            }
+        })
+        if (productosGet) { setProductosGet(false) }
+    };
+
+    const consultarOrden = async () => {
+        const response = await fetch(window.location.origin + "/api/orden/ver/" + parseInt(id))
+        const jsonResponse = await response.json();
+        setOrden(jsonResponse)
+        const response2 = await fetch(window.location.origin + "/api/detalle/obtener/")
+        const jsonResponse2 = await response2.json();
+        setDetalle(jsonResponse2)
+        agregarDetalles(jsonResponse)
+        setIsLoading(false)
+    }
 
     useEffect(() => {
+        consultarOrden()
         obtenerProductos()
-    }, [])
-    const modeloOrden = {
-        id: counter,
-        consecutivo: "Orden-" + (counter).toString(),
-        fechaAlquiler: "",
-        cliente: "",
-        feriaVerde: "",
-        estado: "Reservado",
-        productos: "Seleccionar producto",
-        dimensiones: "",
-        ordenados: "0",
-        usados: "0",
-        sinUsar: "0",
-        devueltos: "0",
-        fechaFinalizacion: "",
-        monto: "0"
-    }
-    const [orden, setOrden] = useState(modeloOrden)
-    const [detalles, setDetalles] = useState([])
+    }, [productosGet])
 
     const handleInputChange = (index, attribute, value) => {
         setDetalles(prevDetalles => {
@@ -54,9 +67,9 @@ const FormularioAgregar = (props) => {
     };
 
     const agregarDetalle = (e) => {
-        const detalle = {
+        const nuevoDetalle = {
             id: idDetalle,
-            consecutivo: "Orden-" + (counter).toString(),
+            consecutivo: orden.consecutivo,
             sku: e.target.value,
             ordenados: 0,
             devueltos: 0,
@@ -64,7 +77,7 @@ const FormularioAgregar = (props) => {
             sinUsar: 0
         }
         setIdDetalle(idDetalle + 1)
-        setDetalles(prevDetalles => [...prevDetalles, detalle]);
+        setDetalles(prevDetalles => [...prevDetalles, nuevoDetalle]);
     };
 
     const actualizarOrden = (e) => {
@@ -79,9 +92,8 @@ const FormularioAgregar = (props) => {
         e.preventDefault();
         // Agregar a la base de datos
         try {
-            setId(id + 1)
-            const response = await fetch(window.location.origin + "/api/orden/agregar", {
-                method: 'POST',
+            const response = await fetch(window.location.origin +"/api/orden/editar/" + parseInt(id), {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -89,38 +101,60 @@ const FormularioAgregar = (props) => {
             });
             setIdDetalle(idDetalle + 1);
             console.log(detalles);
-            
-            detalles.map(async (detalle, index) => {
-                try {
+
+            detalles.map(async (item, index) => {
+                if(item.id < editarDetalles) {
+                    var response = await fetch(window.location.origin + "/api/detalle/editar/" + parseInt(item.id), {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(item),
+                    });
+                } else {
                     var response = await fetch(window.location.origin + "/api/detalle/agregar", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(detalle),
+                        body: JSON.stringify(item),
                     });
-                }
-                catch (err) {
-                    console.log('Error:', err)
                 }
             });
         } catch (err) {
             console.log('Error: ', err)
         }
-        setId(id + 1);
         navigate('/ordenes', {
             replace: true,
         });
     };
 
     useEffect(() => {
-        console.log(detalles,idDetalle)
-        localStorage.setItem('ido', (id).toString())
+        console.log(orden, detalles, idDetalle, editarDetalles)
         localStorage.setItem('cd', (idDetalle).toString())
-    }, [id, idDetalle,detalles])
+    }, [editarDetalles, orden, idDetalle, detalles])
 
-
+    const regresar = e => {
+        e.preventDefault();
+        navigate('/ordenes', {
+            replace: true,
+        });
+    };
     return (
+        <div>{ isLoading ? (
+            <div> <p> Cargando...</p ></div >// Mostrar un mensaje de carga mientras isLoading es true    
+        ) : (
+        <div>
+        <div className="row mb-4">
+            <div className="col-2 col-md-1 pt-1 text-end">
+                <button className="bt-volver" onClick={regresar}>
+                    <MdOutlineArrowBackIosNew className="i-volver" />
+                </button>
+            </div>
+            <div className="col text-start pt-1">
+                <h1>Editando: { orden.consecutivo }</h1>
+            </div>
+        </div>
         <form onSubmit={confirmar}>
             <div className="row pt-4">
                 <div class="input-group">
@@ -170,7 +204,7 @@ const FormularioAgregar = (props) => {
                 <div class="input-group input-form">
                     <span class="input-group-text bg-span">Agregar producto:</span>
                     <select name="productos" className="form-control input-form-end" caret
-                        onChange={(e) => agregarDetalle(e)} value={ orden.productos }>
+                        onChange={(e) => agregarDetalle(e)} value={orden.productos}>
                         {productos.map(item => (
                             <option key={item.sku} value={item.sku}>{item.sku}</option>
                         ))}
@@ -194,38 +228,38 @@ const FormularioAgregar = (props) => {
                 </div>
                 {
                     (detalles.length < 1) ? (
-                    <div class="input-group">
-                        <span class="col input-group-text bg-span">-</span>
-                        <input class="col form-control input-form-end" name="-"
-                            type="text" aria-label="-" placeholder="-" />
-                        <input class="col form-control input-form-end" name="-"
-                            type="text" aria-label="-" placeholder="-" />
-                        <input class="col form-control input-form-end" name="-"
-                            type="text" aria-label="-" placeholder="-" />
-                        <input class="col form-control input-form-end" name="-"
-                            type="text" aria-label="-" placeholder="-" />
-                        <input class="col form-control input-form-end" name="-"
-                            type="text" aria-label="-" placeholder="-" />
-                    </div>
+                        <div class="input-group">
+                            <span class="col input-group-text bg-span">-</span>
+                            <input class="col form-control input-form-end" name="-"
+                                type="text" aria-label="-" placeholder="-" />
+                            <input class="col form-control input-form-end" name="-"
+                                type="text" aria-label="-" placeholder="-" />
+                            <input class="col form-control input-form-end" name="-"
+                                type="text" aria-label="-" placeholder="-" />
+                            <input class="col form-control input-form-end" name="-"
+                                type="text" aria-label="-" placeholder="-" />
+                            <input class="col form-control input-form-end" name="-"
+                                type="text" aria-label="-" placeholder="-" />
+                        </div>
                     ) : (
                         detalles.map((item, index) => (
                             <div class="input-group">
                                 <span class="col input-group-text bg-span">{item.sku}</span>
                                 <input class="col form-control input-form-end" name="ordenados"
                                     type="number" value={item.ordenados}
-                                    onChange={e => handleInputChange(index, 'ordenados', e.target.value)}/>
+                                    onChange={e => handleInputChange(index, 'ordenados', parseInt(e.target.value))} />
                                 <input class="col form-control input-form-end" name="devueltos"
                                     type="number" value={item.devueltos}
-                                    onChange={e => handleInputChange(index, 'devueltos', e.target.value)} />
+                                    onChange={e => handleInputChange(index, 'devueltos', parseInt(e.target.value))} />
                                 <input class="col form-control input-form-end" name="usados"
                                     type="number" value={item.usados}
-                                    onChange={e => handleInputChange(index, 'usados', e.target.value)}/>
+                                    onChange={e => handleInputChange(index, 'usados', parseInt(e.target.value))} />
                                 <input class="col form-control input-form-end" name="sinUsar"
                                     type="number" value={item.sinUsar}
-                                    onChange={e => handleInputChange(index, 'sinUsar', e.target.value)} />
+                                    onChange={e => handleInputChange(index, 'sinUsar', parseInt(e.target.value))} />
                                 <input class="col form-control input-form-end" name="precioDescuento"
                                     type="number" aria-label="-" value="0" />
-                            </div>   
+                            </div>
                         ))
                     )
                 }
@@ -235,8 +269,8 @@ const FormularioAgregar = (props) => {
                     <button type="submit" className="btn bt-confirmar">Confirmar</button>
                 </div>
             </div>
-        </form>
+        </form></div>
+         )}</div>
     );
 }
-
-export default FormularioAgregar;
+export default DetallesOrden;
