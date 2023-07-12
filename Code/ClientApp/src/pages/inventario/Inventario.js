@@ -1,8 +1,8 @@
 import './Inventario.css'
 import TablaInventario from './components/TablaInventario'
 import { useNavigate } from 'react-router-dom'
+import { AiOutlineSearch } from "react-icons/ai";
 
-{/* Pagina principal del Inventario */}
 const Inventario = () => {
     const navigate = useNavigate();
 
@@ -19,19 +19,7 @@ const Inventario = () => {
                 <div className="col-4">
                     <div class="input-group">
                         <input type="search" id="searchBar" class="form-control" placeholder="Buscar producto"/>
-                        <button className="btn btn-color">Icon</button>
-                    </div>
-                </div>
-
-                {/* Boton de filtros */}
-                <div className="col">
-                    <div className="dropdown">
-                        <button class="btn btn-color dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Ordenar por</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Categoria</a></li>
-                            <li><a class="dropdown-item" href="#">Color</a></li>
-                            <li><a class="dropdown-item" href="#">Descripcion</a></li>
-                        </ul>
+                        <button className="btn btn-color"><AiOutlineSearch className="" /></button>
                     </div>
                 </div>
 

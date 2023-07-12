@@ -23,6 +23,8 @@ public partial class FicusDbContext : DbContext
 
     public virtual DbSet<Producto> Productos { get; set; }
 
+    public virtual DbSet<VerificarUnidades> VerificarUnidades { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cliente>(entity =>
@@ -140,6 +142,11 @@ public partial class FicusDbContext : DbContext
             entity.Property(e => e.PrecioAlquiler).HasColumnName("Precio alquiler");
             entity.Property(e => e.PrecioRetail).HasColumnName("Precio retail");
             entity.Property(e => e.Sku).HasColumnType("text");
+        });
+
+        modelBuilder.Entity<VerificarUnidades>(entity => 
+        {
+            entity.HasNoKey();
         });
 
         OnModelCreatingPartial(modelBuilder);

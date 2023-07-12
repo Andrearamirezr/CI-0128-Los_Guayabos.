@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 
 {/* Componente para ingresar los datos de un nuevo producto */ }
 function FormularioAgregar(props) {
+    
     const counter = parseInt(localStorage.getItem('idc')) || 43
     const segmentos = ["Cafeteria", "Catering", "Centro educativo", "Comida preparada", "Empresa", "Feria",
         "Panaderia", "Restaurante", "Usuario final", "Supermercado", "Otro sector"]
@@ -15,7 +16,7 @@ function FormularioAgregar(props) {
     const modeloCliente = {
         id: counter,
         empresa: "",
-        fechaCreacion: "2020-12-17T00:00:00",
+        fechaCreacion: "2023-07-11T00:00:00",
         segmento: "",
         responsable: "",
         prioridad: "",
@@ -94,7 +95,7 @@ function FormularioAgregar(props) {
             <div className="row">
                 <div class="input-group">
                     <span class="input-group-text bg-span">Fecha de creacion:</span>
-                    <input name="fechaCreacion" onChange={(e) => actualizarCliente(e)} value={cliente.fechaCreacion}
+                    <input name="fechaCreacion" onChange={(e) => actualizarCliente(e)} value={"2023-07-11"}
                         type="text" aria-label="Fecha creacion" placeholder="Fecha de creacion" class="form-control input-form" />
                     <span class="input-group-text bg-span">Segmento:</span>
                     <select name="segmento" className="form-control input-form" caret

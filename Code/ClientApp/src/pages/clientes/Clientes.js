@@ -1,8 +1,8 @@
 import './Clientes.css'
 import { useNavigate } from 'react-router-dom'
 import CardDisplay from './components/CardDisplay'
+import { AiOutlineSearch } from "react-icons/ai";
 
-{ /* Pagina principal para mostrar los clientes*/ }
 const Clientes = () => {
     const navigate = useNavigate();
 
@@ -19,19 +19,7 @@ const Clientes = () => {
                 <div className="col-4">
                     <div class="input-group">
                         <input type="search" id="searchBar" class="form-control" placeholder="Buscar cliente" />
-                        <button className="btn btn-color">Icon</button>
-                    </div>
-                </div>
-
-                { /* Boton de filtros */}
-                <div className="col">
-                    <div className="dropdown">
-                        <button class="btn btn-color dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">Ordenar por</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Categoria</a></li>
-                            <li><a class="dropdown-item" href="#">Color</a></li>
-                            <li><a class="dropdown-item" href="#">Descripcion</a></li>
-                        </ul>
+                        <button className="btn btn-color"><AiOutlineSearch className=""/></button>
                     </div>
                 </div>
 

@@ -39,12 +39,10 @@ function DetallesCliente(props) {
                     </div>
                     <div className="col-3 text-start img-col">
                                 <h2 className="pt-2">{data.empresa}</h2>
-                        <h3 className="pt-2">Ordenes realizadas:</h3>
                         <h3 className="pt-2">Impacto ambiental:</h3>
                     </div>
                     <div className="col text-start img-col">
                         { /*<h2 className="pt-2">{data.empresa} </h2>*/}
-                        <h3 className="pt-2">23 </h3>
                         <h3 className="pt-2">10 kg </h3>
                     </div>
                     {/*<div className="col-2 pt-2 text-end img-col">
