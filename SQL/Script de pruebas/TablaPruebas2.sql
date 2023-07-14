@@ -1,4 +1,4 @@
-USE [Ficus_pruebas]
+USE [FicusDB]
 GO
 
 SET ANSI_NULLS ON

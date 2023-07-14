@@ -149,11 +149,11 @@ const FormularioAgregar = (props) => {
         });
     };
 
-    //useEffect(() => {
-        //console.log(detalles,idDetalle)
-        //localStorage.setItem('ido', (id).toString())
-        //localStorage.setItem('cd', (idDetalle).toString())
-    //}, [id, idDetalle,detalles])
+    useEffect(() => {
+        console.log(detalles,idDetalle)
+        localStorage.setItem('ido', (id).toString())
+        localStorage.setItem('cd', (idDetalle).toString())
+    }, [id, idDetalle,detalles])
 
 
     return (
